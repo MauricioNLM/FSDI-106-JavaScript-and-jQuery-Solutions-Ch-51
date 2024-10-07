@@ -30,8 +30,9 @@ function save(){
 
 function displayTask(task){
     let sintax = `
-    <div class="task-container" style="border-color:${task.color}">
+    <div id="task-${task.title}" class="task-container" style="border-color:${task.color}">
         <div class="task">
+        <span onclick="deleteFunction('${task.title}')" id="delete-${task.title}" class="delete-item">X</span>
         <div class="info">
             <h5>${task.title} </h5>
             <p>${task.description}</p>
@@ -65,7 +66,6 @@ function LoadTask(){
             for(let i=0;i<data.length;i++){
                 let task = data[i];
                 if(task.name === 'Mauricio'){
-                    debugger
                     displayTask(task);
                 }
             }
@@ -78,6 +78,13 @@ function LoadTask(){
     })
 }
 
+function deleteFunction(taskId){
+debugger
+    idcontainer = `task-${taskId}`
+    const taskContainer = document.getElementById(idcontainer);
+    taskContainer.remove();
+    debugger
+}
 
 function init(){
     $('#btnSave').click(save);
